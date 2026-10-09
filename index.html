@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NOAA Hourly PM2.5 — Forecast Loop with Click-to-Inspect Values</title>
+<title>NOAA Hourly PM₂.₅ — Forecast Animation v1.11.0</title>
 <style>
 :root { color-scheme: dark; font-family: system-ui,Segoe UI,Arial,sans-serif; background:#0e1825; color:#eaf0f7; }
-*{box-sizing:border-box}body{margin:0;padding:22px} main{max-width:1080px;margin:auto}h1{font-size:clamp(21px,3.2vw,33px);margin:0 0 6px}p{line-height:1.45;color:#b9c8d8}a{color:#90c6ff} .bar{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin:17px 0}.field{display:flex;flex-direction:column;gap:6px}select,button,input{font:inherit} select,button{background:#22334a;color:white;border:1px solid #4b6581;border-radius:7px;padding:10px 13px;min-height:44px}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}.map{cursor:pointer;background:#172437;aspect-ratio:16/9;position:relative;border:1px solid #3e536d;border-radius:9px;overflow:hidden}.map img{width:100%;height:100%;position:absolute;inset:0;object-fit:fill}.canada-boundary{z-index:2;pointer-events:none}.boundary-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}.boundary-svg path{fill:none;stroke:#ffffff;stroke-width:1.25;stroke-opacity:.91;vector-effect:non-scaling-stroke;stroke-linejoin:round}.label{z-index:3}.boundary-option{display:flex;align-items:center;gap:9px;padding-bottom:10px}.boundary-option input{width:20px;height:20px;accent-color:#70b9f9}.label{position:absolute;top:13px;left:13px;background:#101a29df;padding:9px 13px;border-radius:5px;font-weight:600;max-width:calc(100% - 26px);font-size:clamp(12px,2vw,18px)}.map .placeholder{display:grid;place-items:center;height:100%;padding:24px;text-align:center;color:#c5d1e1}.number-layer{position:absolute;inset:0;z-index:4;pointer-events:none}.number-layer .num{position:absolute;transform:translate(-50%,-50%);font:600 clamp(11px,1.25vw,15px)/1 Arial,sans-serif;color:#444;text-shadow:-1px -1px 1px white,1px -1px 1px white,1px 1px 1px white,-1px 1px 1px white;white-space:nowrap}.map-hint{position:absolute;right:11px;bottom:11px;z-index:5;background:#101a29cb;color:#fff;border-radius:5px;font-size:12px;padding:6px 9px}.timeline{display:flex;gap:12px;align-items:center;margin-top:15px;flex-wrap:wrap}input[type=range]{flex:1;min-width:200px;accent-color:#70b9f9}#status{min-height:23px;color:#c3d2e1}.small{font-size:13px}.foot{margin-top:20px;border-top:1px solid #33485e;padding-top:10px}
+*{box-sizing:border-box}body{margin:0;padding:22px} main{max-width:1100px;margin:auto}h1{font-size:clamp(21px,3.2vw,33px);margin:0 0 6px}p{line-height:1.45;color:#b9c8d8;text-align:justify;text-justify:inter-word}a{color:#90c6ff} .bar{display:flex;gap:9px;flex-wrap:nowrap;align-items:end;margin:17px 0}.field{display:flex;flex-direction:column;gap:6px}select,button,input{font:inherit} select,button{background:#22334a;color:white;border:1px solid #4b6581;border-radius:7px;padding:9px 10px;min-height:42px}button{cursor:pointer;white-space:nowrap;flex-shrink:0}.bar>.field{min-width:0}.bar>.field select{max-width:100%;font-size:13px}.bar>.field:first-child{flex:1.5}.bar>.field:nth-child(2){flex:1}button:disabled{opacity:.45;cursor:not-allowed}.map{cursor:pointer;background:#172437;aspect-ratio:16/9;position:relative;border:1px solid #3e536d;border-radius:9px;overflow:hidden}.map img{width:100%;height:100%;position:absolute;inset:0;object-fit:fill}.canada-boundary{z-index:2;pointer-events:none}.boundary-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}.boundary-svg path{fill:none;stroke:#ffffff;stroke-width:1.25;stroke-opacity:.91;vector-effect:non-scaling-stroke;stroke-linejoin:round}.label{z-index:3}.boundary-option{display:flex;align-items:center;gap:6px;padding-bottom:8px;white-space:nowrap;font-size:13px}.boundary-option input{width:20px;height:20px;accent-color:#70b9f9}.label{position:absolute;top:13px;left:13px;background:#101a29df;padding:9px 13px;border-radius:5px;font-weight:600;max-width:calc(100% - 26px);font-size:clamp(12px,2vw,18px)}.map .placeholder{display:grid;place-items:center;height:100%;padding:24px;text-align:center;color:#c5d1e1}.number-layer{position:absolute;inset:0;z-index:4;pointer-events:none}.number-layer .num{position:absolute;transform:translate(-50%,-50%);font:600 clamp(11px,1.25vw,15px)/1 Arial,sans-serif;color:#444;text-shadow:-1px -1px 1px white,1px -1px 1px white,1px 1px 1px white,-1px 1px 1px white;white-space:nowrap}.map-hint{position:absolute;right:11px;bottom:11px;z-index:5;background:#101a29cb;color:#fff;border-radius:5px;font-size:12px;padding:6px 9px}.timeline{display:flex;gap:12px;align-items:center;margin-top:15px;flex-wrap:wrap}input[type=range]{flex:1;min-width:200px;accent-color:#70b9f9}#status{min-height:23px;color:#c3d2e1}.small{font-size:13px}@media(max-width:900px){.bar{flex-wrap:wrap}}.foot{margin-top:20px;border-top:1px solid #33485e;padding-top:10px}
 </style>
 </head>
 <body><main>
@@ -14,40 +14,44 @@
 <div class="bar">
  <label class="field" for="region">Map coverage<select id="region"><option value="northeast">Northeast (Rhode Island centered)</option><option value="conus">Contiguous United States</option></select></label>
  <label class="field" for="count">Frames<select id="count"><option value="12">12 forecast hours</option><option value="24" selected>24 forecast hours</option><option value="48">Up to 48 forecast hours</option></select></label>
- <label class="boundary-option"><input type="checkbox" id="boundaries" checked> US / Canada boundaries</label>
+ <label class="boundary-option"><input type="checkbox" id="boundaries" checked> US / Canada administrative outlines</label>
  <button id="load">Load NOAA frames</button><button id="play" disabled>▶ Play</button><button id="step" disabled>Next hour →</button>
 </div>
 <div class="map" aria-label="NOAA forecast animation">
  <img id="frame" alt="NOAA model forecast frame" hidden>
- <img id="canadaOverlay" class="canada-boundary" hidden alt="Canadian provincial reference boundaries">
+ <svg id="canadaOverlay" class="boundary-svg" viewBox="0 0 1280 720" preserveAspectRatio="none" aria-label="Canadian province and territory outlines"></svg>
  <svg id="stateOverlay" class="boundary-svg" viewBox="0 0 1280 720" preserveAspectRatio="none" aria-label="Geographically aligned US state boundaries"></svg>
- <div id="placeholder" class="placeholder">Select “Load NOAA frames” to retrieve the actual NOAA hourly forecast.</div>
- <div class="label" id="timeLabel">Forecast time not loaded</div>
+ <div id="placeholder" class="placeholder">Retrieving live NOAA hourly forecasts…</div>
+ <div class="label" id="timeLabel">Waiting for NOAA forecast</div>
  <div class="number-layer" id="numbers" aria-live="off"></div>
  <div class="map-hint" id="mapHint">Click map to pause and inspect values</div>
 </div>
 <div class="timeline"><label for="scrub">Forecast hour</label><input id="scrub" type="range" min="0" max="0" value="0" disabled><span id="position">0 / 0</span></div>
 <p id="status" role="status">Display projection: EPSG:3857 (NOAA operational service); model source grid is separate. The NOAA forecast is continuously updated. Click the map to pause and display NOAA model values at fixed positions.</p>
 <div class="bar"><label class="field" for="speed">Playback interval<select id="speed"><option value="1000">Slow — 1 second</option><option value="600" selected>Medium — 0.6 seconds</option><option value="350">Fast — 0.35 seconds</option></select></label></div>
-<div class="foot small"><p><strong>Inspection mode:</strong> Values are hidden during playback. Pause the animation by clicking the map, using the Pause button, or moving the slider. Stationary labels are sampled from NOAA’s hourly PM₂.₅ raster for the selected time. Unavailable queries are left blank. No city names or simulated values.</p><p>State outlines: U.S. state GeoJSON and Natural Resources Canada reference mapping. Both request the same Web Mercator map extent used for NOAA imagery. Boundary visibility can be toggled. If boundary retrieval fails, the forecast continues playing and reports that the overlay is unavailable.</p><p>Source: <a href="https://mapservices.weather.noaa.gov/raster/rest/services/air_quality/ndgd_apm25_hr01/ImageServer" target="_blank" rel="noopener">NOAA/NWS NDGD hourly PM₂.₅ ImageServer</a>. The service determines available forecast times; no missing data are generated or interpolated. Frames are requested for one-hour valid-time windows using identical bounding boxes and display settings. The selected color rendering is NOAA's <code>apm25_color</code> service function. NOAA is the data provider, not the publisher of this demonstration.</p><p>If NOAA blocks browser requests, is temporarily unavailable, or returns no imagery, this demo reports an error rather than substituting simulated maps. Some browsers restrict remote requests when opened as a local file: if so, serve this HTML via a local web server or GitHub Pages.</p></div>
+<div class="foot small"><p><strong>Inspection mode:</strong> Values are hidden during playback. Pause the animation by clicking the map, using the Pause button, or moving the slider. Stationary labels are sampled from NOAA’s hourly PM₂.₅ raster for the selected time. Unavailable queries are left blank. No city names or simulated values.</p><p>Outlines: Esri Living Atlas World Administrative Divisions provides the same first-level polygon geometry source for U.S. states and Canadian provinces. Only white outlines are drawn; no land-color or water-area layer is displayed. Polygon coastlines may still appear as boundary edges. All boundary coordinates use the same Web Mercator extent as NOAA imagery. The outlines never supply PM₂.₅ values or colored masks. Boundary visibility can be toggled. If boundary retrieval fails, the forecast continues playing and reports that the overlay is unavailable.</p><p>Source: <a href="https://mapservices.weather.noaa.gov/raster/rest/services/air_quality/ndgd_apm25_hr01/ImageServer" target="_blank" rel="noopener">NOAA/NWS NDGD hourly PM₂.₅ ImageServer</a>. Administrative outlines: <a href="https://www.arcgis.com/home/item.html?id=cccd798cdd6443da9346be7185ffdcbc" target="_blank" rel="noopener">Esri World Administrative Divisions</a> (Esri/Garmin). The service determines available forecast times; no missing data are generated or interpolated. Frames are requested for one-hour valid-time windows using identical bounding boxes and display settings. The selected color rendering is NOAA's <code>apm25_color</code> service function. NOAA is the data provider, not the publisher of this demonstration.</p><p>If NOAA blocks browser requests, is temporarily unavailable, or returns no imagery, this demo reports an error rather than substituting simulated maps. Some browsers restrict remote requests when opened as a local file: if so, serve this HTML via a local web server or GitHub Pages.</p></div>
 </main>
 <script>
 (()=>{
  const root='https://mapservices.weather.noaa.gov/raster/rest/services/air_quality/ndgd_apm25_hr01/ImageServer';
  const el=id=>document.getElementById(id);
- const state={times:[], urls:[], ready:[],index:0,timer:null,loading:false};
- const regions={northeast:[-82,36,-66,48],conus:[-126,23,-66,51]};
+ const state={times:[], urls:[], ready:[],index:0,timer:null,loading:false,fetchComplete:false,loadToken:0};
+ const regions={northeast:{center:[-74,42.65],lonWidth:17},conus:{center:[-96,39],lonWidth:59}};
  const R=6378137;
  const project=(lon,lat)=>[R*lon*Math.PI/180,R*Math.log(Math.tan(Math.PI/4+Math.max(-85,Math.min(85,lat))*Math.PI/360))];
- const projectedBounds=key=>{const b=regions[key],sw=project(b[0],b[1]),ne=project(b[2],b[3]);return [sw[0],sw[1],ne[0],ne[1]];};
- const caService='https://maps-cartes.services.geo.ca/server2_serveur2/rest/services/BaseMaps/Provinces/MapServer';
- const boundarySources=[
-  'https://cdn.jsdelivr.net/gh/PublicaMundi/MappingAPI@master/data/geojson/us-states.json',
-  'https://raw.githubusercontent.com/PublicaMundi/MappingAPI/master/data/geojson/us-states.json'
- ];
- let stateFeatures=null;
+ const projectedBounds=key=>{const region=regions[key],center=project(...region.center);const width=R*region.lonWidth*Math.PI/180;const height=width*720/1280;return [center[0]-width/2,center[1]-height/2,center[0]+width/2,center[1]+height/2];};
+ // Esri Living Atlas World Administrative Divisions (first-level divisions), USA + Canada.
+ // Single authoritative hosted Esri service; never draw basemap, filled land, or water layers.
+ const ESRI_ADMIN='https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Administrative_Divisions/FeatureServer/0';
+ const adminCache=new Map();
+ let adminRequest=null,adminRegion=null;
  let labelGeneration=0;
  const labelPositions={northeast:[],conus:[]};
+ const inverse=(x,y)=>[x/R*180/Math.PI,(2*Math.atan(Math.exp(y/R))-Math.PI/2)*180/Math.PI];
+ function bbox4326(region){
+  const b=projectedBounds(region),sw=inverse(b[0],b[1]),ne=inverse(b[2],b[3]);
+  return {xmin:sw[0],ymin:sw[1],xmax:ne[0],ymax:ne[1],spatialReference:{wkid:4326}};
+ }
  function coordinatesToPath(rings,bbox){
   const [xmin,ymin,xmax,ymax]=bbox;
   return rings.map(ring=>ring.map((c,i)=>{
@@ -59,53 +63,76 @@
  }
  function drawStates(){
   const svg=el('stateOverlay');svg.replaceChildren();
+  el('canadaOverlay').replaceChildren();el('canadaOverlay').hidden=true;
   svg.hidden=!el('boundaries').checked;
-  if(!stateFeatures||!el('boundaries').checked){if(!el('boundaries').checked)el('canadaOverlay').hidden=true;return;}
-  const bbox=projectedBounds(el('region').value);
-  const ns='http://www.w3.org/2000/svg';
-  for(const feature of stateFeatures){
-   const geometry=feature.geometry;
-   if(!geometry)continue;
-   const polys=geometry.type==='Polygon'?[geometry.coordinates]:geometry.type==='MultiPolygon'?geometry.coordinates:[];
+  const features=adminCache.get(el('region').value);
+  if(!features||!el('boundaries').checked)return;
+  const bbox=projectedBounds(el('region').value),ns='http://www.w3.org/2000/svg';
+  const fragment=document.createDocumentFragment();
+  for(const feature of features){
+   const g=feature.geometry;if(!g)continue;
+   const polys=g.type==='Polygon'?[g.coordinates]:g.type==='MultiPolygon'?g.coordinates:[];
    for(const poly of polys){
+    if(!poly||!poly.length)continue;
+    // Boundary outlines only. The Esri polygon geometry includes some coastal edges;
+    // no separate water polygons, lakes, or hydrography layers are requested.
+    const d=coordinatesToPath([poly[0]],bbox);if(!d)continue;
     const path=document.createElementNS(ns,'path');
-    path.setAttribute('d',coordinatesToPath(poly,bbox));
-    svg.appendChild(path);
+    path.setAttribute('d',d);path.setAttribute('fill','none');
+    path.setAttribute('stroke','#ffffff');fragment.appendChild(path);
    }
   }
+  svg.appendChild(fragment);
  }
- async function drawCanada(){
-  const img=el('canadaOverlay');img.hidden=true;
-  if(!el('boundaries').checked)return false;
-  const b=projectedBounds(el('region').value);
-  const q=new URLSearchParams({f:'image',bbox:b.join(','),bboxSR:'3857',imageSR:'3857',size:'1280,720',format:'png32',transparent:'true',dpi:'96'});
-  const url=caService+'/export?'+q;
-  const ok=await preload(url);
-  if(ok){img.src=url;img.hidden=false;}
-  return ok;
- }
+ function drawCanada(){drawStates();}
  async function loadStateBoundaries(){
-  if(stateFeatures){drawStates();await drawCanada();return true;}
-  for(const url of boundarySources){
-   try{
-    const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),12000);
-    let response;try{response=await fetch(url,{signal:controller.signal});}finally{clearTimeout(timer);}
-    if(!response.ok)continue;
-    const data=await response.json();
-    if(data.type!=='FeatureCollection'||!Array.isArray(data.features)||data.features.length<45)continue;
-    stateFeatures=data.features;drawStates();await drawCanada();return true;
-   }catch(e){}
-  }
-  return false;
+  const region=el('region').value;
+  if(!el('boundaries').checked)return {us:false,canada:false};
+  if(adminCache.has(region)){drawStates();return {us:true,canada:true};}
+  if(adminRequest&&adminRegion===region)return adminRequest;
+  adminRegion=region;
+  const task=(async()=>{
+   const envelope=bbox4326(region),features=[];
+   for(let offset=0;offset<3000;offset+=500){
+    const p=new URLSearchParams({f:'geojson',where:'1=1',
+     geometry:JSON.stringify(envelope),geometryType:'esriGeometryEnvelope',
+     inSR:'4326',spatialRel:'esriSpatialRelIntersects',outSR:'4326',
+     outFields:'FID,COUNTRYAFF',returnGeometry:'true',
+     resultOffset:String(offset),resultRecordCount:'500',orderByFields:'FID ASC'});
+    const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),25000);
+    let response;
+    try{response=await fetch(ESRI_ADMIN+'/query?'+p,{signal:controller.signal});}
+    finally{clearTimeout(timeout);}
+    if(!response.ok)throw Error('Esri boundary HTTP '+response.status);
+    const j=await response.json();
+    if(j.error)throw Error(j.error.message||'Esri boundary query rejected');
+    if(j.type!=='FeatureCollection'||!Array.isArray(j.features))throw Error('Esri boundary response was not GeoJSON');
+    features.push(...j.features);
+    if(j.features.length<500)break;
+   }
+   if(!features.length)throw Error('No Esri administrative features within map extent');
+   adminCache.set(region,features);
+   if(el('region').value===region)drawStates();
+   return {us:true,canada:true};
+  })();
+  adminRequest=task;
+  try{return await task;}
+  catch(e){console.warn('Esri Living Atlas boundaries unavailable:',e);return {us:false,canada:false};}
+  finally{if(adminRequest===task)adminRequest=null;}
  }
- el('boundaries').addEventListener('change',()=>{if(stateFeatures){drawStates();drawCanada();}else if(el('boundaries').checked)loadStateBoundaries().then(ok=>{if(!ok)setStatus('State boundary service unavailable; NOAA frames can still animate.');});else {drawStates();el('canadaOverlay').hidden=true;}});
+ el('boundaries').addEventListener('change',()=>{
+  drawStates();
+  if(el('boundaries').checked)loadStateBoundaries().then(result=>{
+   if(!result.us)setStatus('Esri administrative outlines unavailable; NOAA forecast remains visible without a boundary mask.');
+  });
+ });
  const fmt=(ms)=>new Date(ms).toLocaleString('en-US',{timeZone:'UTC',month:'short',day:'numeric',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:false})+' UTC';
  const setStatus=(s)=>{el('status').textContent=s;};
  const hideNumbers=()=>{labelGeneration++;el('numbers').replaceChildren();};
  function positions(){
   const region=el('region').value;
   if(labelPositions[region].length)return labelPositions[region];
-  const box=regions[region],merc=projectedBounds(region),pts=[];
+  const merc=projectedBounds(region),pts=[];
   const cols=region==='northeast'?12:15, rows=region==='northeast'?8:9;
   // Deterministic irregular-looking sampling positions, stationary in lon/lat.
   for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
@@ -139,7 +166,12 @@
   await Promise.all(Array.from({length:7},worker));
  }
  const stop=(show=true)=>{if(state.timer!==null){clearInterval(state.timer);state.timer=null;}el('play').textContent='▶ Play';if(show&&state.ready.length)showNumbers();};
- const present=(n)=>{if(!state.ready.length)return;state.index=(n+state.ready.length)%state.ready.length;let idx=state.ready[state.index];el('frame').src=state.urls[idx];el('frame').hidden=false;el('placeholder').hidden=true;el('timeLabel').textContent='Valid '+fmt(state.times[idx])+' · PM₂.₅ (µg/m³)';el('scrub').value=state.index;el('position').textContent=(state.index+1)+' / '+state.ready.length;if(state.timer===null)showNumbers();};
+ const present=(n)=>{if(!state.ready.length)return;
+  if(n>=state.ready.length&&!state.fetchComplete){
+   setStatus(`Buffering genuine NOAA forecast hours — ${state.ready.length} / ${state.times.length} loaded. Playback will continue when available.`);
+   return;
+  }
+  state.index=(n+state.ready.length)%state.ready.length;let idx=state.ready[state.index];el('frame').src=state.urls[idx];el('frame').hidden=false;el('placeholder').hidden=true;el('timeLabel').textContent='Valid '+fmt(state.times[idx])+' · PM₂.₅ (µg/m³)';el('scrub').value=state.index;el('position').textContent=(state.index+1)+' / '+state.ready.length;if(state.timer===null)showNumbers();};
  function togglePlayback(){
   if(state.timer!==null){stop(true);return;}
   if(state.ready.length<2)return;
@@ -152,38 +184,67 @@
  }
  function preload(url){return new Promise(resolve=>{let img=new Image();let settled=false;const done=ok=>{if(!settled){settled=true;resolve(ok);}};img.onload=()=>done(img.naturalWidth>0);img.onerror=()=>done(false);img.src=url;setTimeout(()=>done(false),22000);});}
  async function load(){
-  if(state.loading)return;stop(false);hideNumbers();state.loading=true;state.ready=[];state.times=[];state.urls=[];
+  if(state.loading)return;
+  stop(false);hideNumbers();state.loading=true;state.fetchComplete=false;
+  const token=++state.loadToken;
+  state.ready=[];state.times=[];state.urls=[];state.index=0;
   el('load').disabled=true;el('play').disabled=true;el('step').disabled=true;el('scrub').disabled=true;
-  el('placeholder').hidden=false;el('frame').hidden=true;el('timeLabel').textContent='Loading NOAA...';setStatus('Reading live NOAA service time extent...');
+  el('placeholder').hidden=false;el('frame').hidden=true;el('timeLabel').textContent='Loading NOAA...';
+  setStatus('Retrieving hourly forecast metadata from NOAA...');
   try{
    const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),15000);
    let response;try{response=await fetch(root+'?f=pjson',{signal:controller.signal,cache:'no-store'});}finally{clearTimeout(timeout);}
    if(!response.ok)throw Error('NOAA metadata returned HTTP '+response.status);
-   const metadata=await response.json();const extent=metadata.timeInfo?.timeExtent;
+   const metadata=await response.json(),extent=metadata.timeInfo?.timeExtent;
    if(!extent||!Number.isFinite(extent[0])||!Number.isFinite(extent[1]))throw Error('NOAA did not return valid time metadata');
    const t0=Math.ceil(extent[0]/3600000)*3600000;
-   const hours=Number(el('count').value);
-   const all=[];for(let t=t0;t<extent[1]&&all.length<hours;t+=3600000)all.push(t);
-   if(!all.length)throw Error('NOAA reports no hourly forecast frames');
-   state.times=all;const box=projectedBounds(el('region').value);state.urls=all.map(t=>urlFor(t,box));
-   drawStates();
-   setStatus('NOAA valid-time range: '+fmt(extent[0])+' to '+fmt(extent[1])+'. Preloading '+all.length+' frames...');
-   // Avoid flooding the image service; request batches of four.
+   const hours=Number(el('count').value),all=[];
+   for(let t=t0;t<extent[1]&&all.length<hours;t+=3600000)all.push(t);
+   if(all.length<1)throw Error('NOAA reports no hourly forecast frames');
+   state.times=all;
+   const box=projectedBounds(el('region').value);
+   state.urls=all.map(t=>urlFor(t,box));
+   drawStates();drawCanada();
+   // Asynchronous overlays may finish while NOAA imagery is already playing.
+   if(el('boundaries').checked)loadStateBoundaries().then(result=>{
+    if(token!==state.loadToken)return;
+    if(!result.us)console.warn('Esri administrative boundary source unavailable:',result);
+   }).catch(()=>{});
+   setStatus(`Loading NOAA forecast: first 8 frames prioritized (${all.length} requested).`);
+   let checked=0,failed=0,started=false;
+   // Batches preserve chronological order; never invent or interpolate any hourly imagery.
    for(let k=0;k<all.length;k+=4){
+    if(token!==state.loadToken)return;
     const results=await Promise.all(state.urls.slice(k,k+4).map(preload));
-    results.forEach((ok,j)=>{if(ok)state.ready.push(k+j);});
-    setStatus(`Loaded ${state.ready.length} valid forecast images; checked ${Math.min(k+4,all.length)} of ${all.length}.`);
+    results.forEach((ok,j)=>{if(ok)state.ready.push(k+j);else failed++;});
+    checked=Math.min(k+4,all.length);
+    el('scrub').max=String(Math.max(0,state.ready.length-1));
+    if(!started&&state.ready.length>=Math.min(8,all.length)&&state.ready.length>1){
+     started=true;
+     el('scrub').disabled=false;el('play').disabled=false;el('step').disabled=false;
+     present(0);hideNumbers();togglePlayback();
+    }
+    if(!started){setStatus(`Preparing animation: ${state.ready.length} / ${Math.min(8,all.length)} initial NOAA frames loaded (${checked} hours checked).`);}
+    else if(state.timer!==null){setStatus(`Playing genuine NOAA forecast; ${state.ready.length} / ${all.length} frames available (${checked} checked).`);}
    }
-   if(!state.ready.length)throw Error('NOAA returned no loadable image frames; service may be unavailable or blocked');
-   state.index=0;el('scrub').max=String(state.ready.length-1);el('scrub').disabled=false;el('play').disabled=state.ready.length<2;el('step').disabled=state.ready.length<2;present(0);hideNumbers();
-   setStatus(`Ready: ${state.ready.length} actual NOAA forecast frames. ${all.length-state.ready.length} unavailable frame(s) omitted. Press Play; pause to view values.`);
-   if(el('boundaries').checked){const ok=await loadStateBoundaries();if(!ok)setStatus('NOAA imagery ready, but state outlines could not be downloaded. The animation remains usable.');}
-  }catch(err){setStatus('Unable to load NOAA imagery: '+err.message+'. If opening as file://, try serving from GitHub Pages or localhost.');el('timeLabel').textContent='No imagery available';}
-  finally{state.loading=false;el('load').disabled=false;}
+   state.fetchComplete=true;
+   if(!state.ready.length)throw Error('NOAA returned no loadable forecast images');
+   if(!started){
+    el('scrub').disabled=false;el('play').disabled=state.ready.length<2;el('step').disabled=state.ready.length<2;
+    present(0);hideNumbers();
+    if(state.ready.length>1)togglePlayback();
+   }
+   if(state.timer!==null)setStatus(`Playing NOAA forecast loop: ${state.ready.length} real hourly frames; ${failed} unavailable. Click map to pause and inspect values.`);
+   else setStatus(`Ready: ${state.ready.length} real NOAA frames; ${failed} unavailable. Click map or Play to animate.`);
+  }catch(err){
+   state.fetchComplete=true;
+   setStatus('Unable to load NOAA imagery: '+err.message+'. Browser/network restrictions may affect remote requests.');
+   if(!state.ready.length)el('timeLabel').textContent='No imagery available';
+  }finally{if(token===state.loadToken){state.loading=false;el('load').disabled=false;}}
  }
  el('load').addEventListener('click',load);
  el('play').addEventListener('click',togglePlayback);
- document.querySelector('.map').addEventListener('click',()=>{if(!state.loading)togglePlayback();});
+ document.querySelector('.map').addEventListener('click',()=>{if(state.ready.length)togglePlayback();});
  el('step').addEventListener('click',()=>{stop(false);present(state.index+1);});
  el('scrub').addEventListener('input',e=>{stop(false);present(Number(e.target.value));});
  el('speed').addEventListener('change',()=>{if(state.timer!==null){stop(false);togglePlayback();}});
@@ -191,6 +252,9 @@
  el('count').addEventListener('change',()=>{stop(false);hideNumbers();setStatus('Frame count changed. Select “Load NOAA frames” to reload.');});
  document.addEventListener('visibilitychange',()=>{if(document.hidden)stop(false);});
  loadStateBoundaries().catch(()=>{});
+ // A hosted iframe cannot rely on the visitor clicking 'Load NOAA frames'.
+ // Start loading once the page is ready; play begins only after successful load.
+ load();
 })();
 </script>
 </body></html>
