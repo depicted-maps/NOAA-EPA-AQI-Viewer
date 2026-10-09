@@ -7,7 +7,7 @@ Current operational forecast · Hourly modeled PM₂.₅ concentrations (µg/m³
 
 ## Overview
 
-This project animates **actual hourly NOAA/National Weather Service PM₂.₅ model forecast imagery** using NOAA's time-enabled image service. The northeastern view is centered near Rhode Island, and a broader contiguous U.S. view is also available. Where the NOAA raster includes Canadian territory, its modeled values are displayed across the international border.
+<p align="justify">This project animates <strong>actual hourly NOAA/National Weather Service PM₂.₅ model forecast imagery</strong> using NOAA&#x27;s time-enabled image service. The northeastern view is centered near Rhode Island, and a broader contiguous U.S. view is also available. Where the NOAA raster includes Canadian territory, its modeled values are displayed across the international border.</p>
 
 > **Scientific distinction:** This is a **PM₂.₅ concentration forecast**, measured in **micrograms per cubic meter (µg/m³)**. It is **not EPA Air Quality Index (AQI)** and is **not a ground-monitor observation**. The current viewer does not replay July 2026 archived forecasts.
 
@@ -40,15 +40,15 @@ This project animates **actual hourly NOAA/National Weather Service PM₂.₅ mo
 | Boundaries | U.S. state / Canadian provincial outlines requested from external services; still subject to geographic validation |
 | Valid times | Forecast hours advertised by NOAA's current operational service |
 
-The viewer uses the NOAA service's existing colors and displays available hourly frames without inventing intermediate forecasts. Sample values use fixed geographic positions; these positions **have not been verified as NOAA's exact annotation locations**.
+<p align="justify">The viewer uses the NOAA service&#x27;s existing colors and displays available hourly frames without inventing intermediate forecasts. Sample values use fixed geographic positions; these positions <strong>have not been verified as NOAA&#x27;s exact annotation locations</strong>.</p>
 
 ## Use in ArcGIS StoryMaps
 
-In **ArcGIS StoryMaps**, add an **Embed** block and paste:
+<p align="justify">In <strong>ArcGIS StoryMaps</strong>, add an <strong>Embed</strong> block and paste:</p>
 
 `https://depicted-maps.github.io/NOAA-EPA-AQI-Viewer/`
 
-Use the **interactive** website option, not a static image preview. Allow enough height to show the controls and map. The viewer uses live NOAA services and requires a network connection. The embedded version starts the animation after its forecast frames have loaded, subject to browser and service availability.
+<p align="justify">Use the <strong>interactive</strong> website option, not a static image preview. Allow enough height to show the controls and map. The viewer uses live NOAA services and requires a network connection. The embedded version starts the animation after its forecast frames have loaded, subject to browser and service availability.</p>
 
 ## Publish with GitHub Pages
 
@@ -56,7 +56,7 @@ Use the **interactive** website option, not a static image preview. Allow enough
 - In **Settings → Pages**, select **Deploy from a branch → main → /(root)**.
 - After publication, the application URL is `https://depicted-maps.github.io/NOAA-EPA-AQI-Viewer/`.
 
-For updates, **upload `README.md` as a file** rather than pasting the entire document into one line of GitHub's web editor. GitHub displays Markdown correctly when its line breaks, headings (`##`), and tables are preserved.
+<p align="justify">For updates, <strong>upload <code>README.md</code> as a file</strong> rather than pasting the entire document into one line of GitHub&#x27;s web editor. GitHub displays Markdown correctly when its line breaks, headings (<code>##</code>), and tables are preserved.</p>
 
 ## Official NOAA references
 
@@ -66,6 +66,7 @@ For updates, **upload `README.md` as a file** rather than pasting the entire doc
 
 ## Validation and limitations
 
-**Status: development / validation prototype (v1.08.0).** The JavaScript viewer implements official NOAA image requests, an hourly playback sequence, and fixed-location value inspection. The following require further live testing: completeness of the operational hourly series; raster-value agreement for selected frames; exact U.S. and Canada boundary alignment; and visual comparison against NOAA's official viewer. Availability of Canadian outlines depends on their source service.
+<p align="justify"><strong>Status: development / validation prototype (v1.08.0).</strong> The JavaScript viewer implements official NOAA image requests, an hourly playback sequence, and fixed-location value inspection. The following require further live testing: completeness of the operational hourly series; raster-value agreement for selected frames; exact U.S. and Canada boundary alignment; and visual comparison against NOAA&#x27;s official viewer. Availability of Canadian outlines depends on their source service.</p>
 
-This repository is **independently developed** and is **not an official NOAA application** or an EPA AQI product. Forecast source credit: **NOAA / National Weather Service**. Historical July 15–17, 2026 replay would require independently verified archived model data.
+<p align="justify">This repository is <strong>independently developed</strong> and is <strong>not an official NOAA application</strong> or an EPA AQI product. Forecast source credit: <strong>NOAA / National Weather Service</strong>. Historical July 15–17, 2026 replay would require independently verified archived model data.
+</p>
